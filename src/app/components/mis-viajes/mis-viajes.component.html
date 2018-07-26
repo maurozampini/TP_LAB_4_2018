@@ -1,5 +1,7 @@
 
-  <mat-spinner *ngIf="loading" style="margin:auto;margin-top:150px;"></mat-spinner>
+  <!--<mat-spinner *ngIf="loading" style="margin:auto;margin-top:150px;"></mat-spinner>-->
+  <img src="../../../assets/loader.gif" alt="" *ngIf="loading" style="margin-left:600px;margin-top:200px; position: absolute">
+
   <div *ngIf="!loading" style="margin:30px;" class="example-container mat-elevation-z8">
     <mat-table #table [dataSource]="dataSource">
   
