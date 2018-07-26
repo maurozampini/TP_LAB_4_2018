@@ -1,7 +1,7 @@
 <div class="container">
-  <div class="row justify-content-center align-items-center" style="padding-top: 120px;">
+  <div class="row justify-content-center align-items-center" style="padding-top: 50px;">
     <form class="col-6" [formGroup]="reactiveForm">
-      <h2>Ingresar</h2>
+      <h2 style="text-align: center; padding: 30px;">Ingresar</h2>
       <mat-card *ngIf="showError" style="        margin: 30px 12px;box-shadow: 0 3px 1px -2px #f4433626, 0 2px 2px 0 #f443362e, 0 1px 5px 0 #f443361f;
       background-color: #ff000026;">
         <mat-card-title>Error</mat-card-title>
@@ -19,10 +19,12 @@
         <button mat-raised-button class="col-12" ngDefaultControl name="la" [disabled]="reactiveForm.status != 'VALID'" (click)="ingresar()" color="primary">Ingresar</button>
       </p>  
       <p style="padding-top: 20px;">
-        <button mat-raised-button class="col-12" ngDefaultControl name="reg" routerLink="/registrar">¡Registrarme!</button>
+        <button mat-raised-button class="col-12" ngDefaultControl name="reg" routerLink="/registrar">¿No tenés cuenta? ¡Regístrate!</button>
       </p>
-    </form>   
-    <mat-form-field class="col-6">
+    </form>
+  </div>
+  <div style="text-align: center; padding: 30px;">
+  <mat-form-field class="col-6">
       <mat-select  [(ngModel)]="autolog" (change)="autoLogin()" [ngModelOptions]="{standalone: true}"  placeholder="Seleccione tipo de usuario">
         <mat-option value="c">
             Cliente
