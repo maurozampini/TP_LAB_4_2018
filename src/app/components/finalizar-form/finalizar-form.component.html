@@ -3,9 +3,11 @@
 <mat-dialog-content>    
     <mat-form-field class="col-12">
       <input matInput pKeyFilter="num" [(ngModel)]="precio" placeholder="Precio viaje" >
+      <label for="">{{ precio | precio }}</label>
+      
     </mat-form-field>
 </mat-dialog-content>
 <mat-dialog-actions style="float:right;">
-    <button mat-raised-button mat-dialog-close>Cancelar</button>
+    <button mat-raised-button mat-dialog-close (click)="cancelar()">Cancelar</button>
     <button mat-raised-button (click)="conf()" color="primary">Confirmar</button>
 </mat-dialog-actions>

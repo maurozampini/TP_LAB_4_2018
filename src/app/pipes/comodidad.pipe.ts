@@ -7,15 +7,15 @@ export class ComodidadPipe implements PipeTransform {
 
   transform(value: any, args?: any): any {
     if(value == 'uno') {
-      return 'star_border';
+      return 'star';
     } else if (value == 'dos') {
-      return 'star_border star_border';
+      return 'star star';
     } else if (value == 'tres') {
-      return 'star_border star_border star_border';
+      return 'star star star';
     } else if (value == 'cuatro') {
-      return 'star_border star_border star_border star_border';
+      return 'star star star star';
     } else if (value == 'cinco') {
-      return 'star_border star_border star_border star_border star_border';
+      return 'star star star star star';
     }
     return '';
   }

@@ -13,13 +13,13 @@ import { FinalizarFormComponent } from '../finalizar-form/finalizar-form.compone
 })
 export class ViajesAsignadosComponent implements OnInit {
 
-  loading : boolean;
-  dataSource : Array<Viajes>;
+  loading: boolean;
+  dataSource: Array<Viajes>;
   displayedColumns = ['fecha', 'hora', 'ruta', 'medioPago', 'estado'];
-  gmSelector : MatDialogRef<GoogleMapSelectorComponent>;
-  finalizarRef : MatDialogRef<FinalizarFormComponent>;
+  gmSelector: MatDialogRef<GoogleMapSelectorComponent>;
+  finalizarRef: MatDialogRef<FinalizarFormComponent>;
 
-  constructor(private vSrv : ViajesService, private matDialog : MatDialog, private alert : AlertService) { }
+  constructor(private vSrv: ViajesService, private matDialog: MatDialog, private alert: AlertService) { }
 
   ngOnInit() {
     this.getViajes();
@@ -37,49 +37,49 @@ export class ViajesAsignadosComponent implements OnInit {
     });
   }
 
-  openMap(row : Viajes, destino) {
+  openMap(row: Viajes, destino) {
     this.gmSelector = this.matDialog.open(GoogleMapSelectorComponent, {
-      width : '60%',
-      data : {
-        hidenButtons : true,
-        title : 'Seleccionar destino',
-        lat : Number(destino ? row.destinoLat : row.origenLat),
-        lng : Number(destino ? row.destinoLong : row.origenLong)
+      width: '60%',
+      data: {
+        hidenButtons: true,
+        title: 'Seleccionar destino',
+        lat: Number(destino ? row.destinoLat : row.origenLat),
+        lng: Number(destino ? row.destinoLong : row.origenLong)
       }
     });
 
   }
 
-  verRuta(row : Viajes) {
+  verRuta(row: Viajes) {
     this.gmSelector = this.matDialog.open(GoogleMapSelectorComponent, {
-      width : '60%',
-      data : {
-        hidenButtons : true,
-        title : 'Seleccionar destino',
-        showRuta : true,
-        origen : {
+      width: '60%',
+      data: {
+        hidenButtons: true,
+        title: 'Seleccionar destino',
+        showRuta: true,
+        origen: {
 
-            lat : Number(row.origenLat),
-            lng : Number(row.origenLong)
+          lat: Number(row.origenLat),
+          lng: Number(row.origenLong)
         },
-        destino : {
+        destino: {
 
-            lat : Number(row.destinoLat),
-            lng : Number(row.destinoLong)
+          lat: Number(row.destinoLat),
+          lng: Number(row.destinoLong)
         }
       }
     });
 
   }
 
-  tomarViaje(row : Viajes) {
+  tomarViaje(row: Viajes) {
     let a = this.alert.create({
-      message : '¿Seguro que toma este viaje?',
-      buttons : [
+      message: '¿Seguro que toma este viaje?',
+      buttons: [
         {
-          text : 'Si',
-          color : 'primary',
-          handler : () => {
+          text: 'Si',
+          color: 'primary',
+          handler: () => {
             this._tomarViaje(row);
           }
         },
@@ -89,35 +89,36 @@ export class ViajesAsignadosComponent implements OnInit {
     a.presentConfirm();
   }
 
-  finalizar(row : Viajes) {
+  finalizar(row: Viajes) {
     this.finalizarRef = this.matDialog.open(FinalizarFormComponent);
     this.finalizarRef.afterClosed().subscribe(res => {
-      
-      this._finalizarViaje(row, res)
+      if (res) {
+        this._finalizarViaje(row, res)
+      }
     });
   }
 
-  private _tomarViaje(viaje : Viajes) {
+  private _tomarViaje(viaje: Viajes) {
     this.vSrv.tomarViaje(viaje.viajeID).then(res => {
       this.getViajes();
     }).catch(err => {
       let alerta = this.alert.create({
-        message : err.error.message,
-        title : '¡Error!',
-        buttons : ['Aceptar']
+        message: err.error.message,
+        title: '¡Error!',
+        buttons: ['Aceptar']
       });
       alerta.present();
     });
   }
 
-  private _finalizarViaje(viaje : Viajes, precio : number) {
+  private _finalizarViaje(viaje: Viajes, precio: number) {
     this.vSrv.finalizar(viaje.viajeID, precio).then(res => {
       this.getViajes();
     }).catch(err => {
       let alerta = this.alert.create({
-        message : err.error.message,
-        title : '¡Error!',
-        buttons : ['Aceptar']
+        message: err.error.message,
+        title: '¡Error!',
+        buttons: ['Aceptar']
       });
       alerta.present();
     });

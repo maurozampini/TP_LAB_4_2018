@@ -9,7 +9,7 @@ import { AlertService } from '../../services/alert/alert.service';
 })
 export class FinalizarFormComponent implements OnInit {
 
-  precio : number = 0.00;
+  precio : number = 50;
 
   constructor(public dialogRef: MatDialogRef<FinalizarFormComponent>, private alert : AlertService) { }
 
@@ -17,15 +17,18 @@ export class FinalizarFormComponent implements OnInit {
   }
 
   conf() {
-    if(this.precio && this.precio > 0) {
+    if(this.precio && this.precio >= 50) {
 
       this.dialogRef.close(this.precio);
     } else {
       let a = this.alert.create({
-        message : 'Debe indicar un precio mayor a 0'
+        message : 'Debe indicar un precio mayor o igual a 50'
       });
       a.present();
     }
   }
 
+  cancelar() {
+    this.dialogRef.close(false);
+  }
 }
