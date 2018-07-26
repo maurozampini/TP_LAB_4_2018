@@ -8,7 +8,7 @@
 
 ### Para acceder al sistema, ya seas cliente, chofer o encargado:
 
-![alt text](https://github.com/maurozampini/TP_LAB_4_2018/master/imagenes-readme/tutorial1.png)
+![alt text](https://github.com/maurozampini/TP_LAB_4_2018/blob/master/imagenes-readme/tutorial1.png)
 
 -------------------
 
