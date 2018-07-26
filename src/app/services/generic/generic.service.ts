@@ -6,7 +6,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 export class GenericService {
 
   protected readonly url : string = 'http://localhost/tp';
-  //protected readonly url : string = 'http://matiasmartin.xyz/api';
+  //protected readonly url : string = 'http://locomotivsublimaciones.esy.es/api';
   protected headers : any;
   constructor(protected http : HttpClient, protected helper : JwtHelperService) {
     this.headers = {
