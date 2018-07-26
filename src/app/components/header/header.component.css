@@ -6,3 +6,9 @@
     margin: 0 5px;
 }
   
+
+.izquierda {
+    position: absolute;
+    left: 0;
+}
+  

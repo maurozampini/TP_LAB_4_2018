@@ -2,6 +2,7 @@
   <mat-list-item (click)="navigation('')" style="cursor: pointer" role="listitem">Remiseria</mat-list-item>
 </mat-list>
 <mat-list *ngIf="reaload" role="list" style="width: 250px;">
+  <mat-list-item mat-raised-button  *ngIf="auth.isLogued()" class="separador" color="primary">{{auth.dameNombre()}}</mat-list-item><!-- NO LOGUEADO -->
   <mat-list-item class="hover-item" (click)="navigation('')" style="cursor: pointer" role="listitem">Inicio</mat-list-item>
   <mat-list-item class="hover-item" *ngIf="!auth.isLogued()" (click)="navigation('ingresar')" style="cursor: pointer" role="listitem">Inresar</mat-list-item><!-- NO LOGUEADO -->
   <mat-list-item class="hover-item" *ngIf="!auth.isLogued()" (click)="navigation('registrar')" style="cursor: pointer" role="listitem">Registrarte</mat-list-item><!-- NO LOGUEADO -->

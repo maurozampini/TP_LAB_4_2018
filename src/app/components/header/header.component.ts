@@ -3,6 +3,8 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { AuthService } from '../../services/auth/auth.service';
 import { MatDialog } from '@angular/material';
 import { NuevoViajeFormComponent } from '../nuevo-viaje-form/nuevo-viaje-form.component';
+import { ActivatedRoute, Route, Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-header',
@@ -13,7 +15,7 @@ export class HeaderComponent implements OnInit {
 
   @Input() sidenav : MatSidenav;
 
-  constructor(private matDialog : MatDialog, public auth : AuthService) { }
+  constructor(private route : Router, private matDialog : MatDialog, public auth : AuthService) { }
 
   ngOnInit() {
   }
@@ -24,5 +26,10 @@ export class HeaderComponent implements OnInit {
 
   solicitarNuevoViaje() {
     this.matDialog.open(NuevoViajeFormComponent, { width : '60%'});
+  }
+
+  navigation(navTo) {
+    this.route.navigate(['/' + navTo]);
+    //this.sidenav.toggle();
   }
 }

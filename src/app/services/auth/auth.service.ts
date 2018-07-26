@@ -48,6 +48,10 @@ export class AuthService extends GenericService {
     }
   }
 
+  public dameNombre() : string {
+    return this.data ? this.data.usuario : '';
+  }
+
   public isCliente() : boolean {
     return this.getRol() == ERol.CLIENTE;
   }
