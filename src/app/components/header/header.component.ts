@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { MatSidenav } from '@angular/material/sidenav';
+import { AuthService } from '../../services/auth/auth.service';
+import { MatDialog } from '@angular/material';
+import { NuevoViajeFormComponent } from '../nuevo-viaje-form/nuevo-viaje-form.component';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +11,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  @Input() sidenav : MatSidenav;
+
+  constructor(private matDialog : MatDialog, public auth : AuthService) { }
 
   ngOnInit() {
   }
 
+  toggleSidenav() {
+    this.sidenav.toggle();
+  }
+
+  solicitarNuevoViaje() {
+    this.matDialog.open(NuevoViajeFormComponent, { width : '60%'});
+  }
 }

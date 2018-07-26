@@ -1,0 +1,7 @@
+<h4 mat-dialog-title>{{title}}</h4>
+<mat-dialog-content>
+  <p>{{message}}</p>
+</mat-dialog-content>
+<mat-dialog-actions style="float:right;">
+  <button mat-raised-button *ngFor="let b of buttons" [color]="b.color" (click)="buttonClick(b)" [ngClass]="b.cssClass">{{b.text}}</button>
+</mat-dialog-actions>

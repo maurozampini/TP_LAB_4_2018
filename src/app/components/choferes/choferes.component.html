@@ -1,0 +1,55 @@
+<mat-toolbar style="border-top: solid 1px;border-color: rgb(65, 86, 181);margin-bottom:20px">
+        <mat-toolbar-row>
+          <button mat-button (click)="nuevo()">
+            Nuevo
+          </button>
+        </mat-toolbar-row>
+      </mat-toolbar>
+      <mat-spinner *ngIf="loading" style="margin:auto;margin-top:150px;"></mat-spinner>
+      <div *ngIf="!loading" style="margin-top:30px;" class="example-container mat-elevation-z8">
+        <mat-table #table [dataSource]="dataSource">
+      
+          <!--- Note that these columns can be defined in any order.
+                The actual rendered columns are set as a property on the row definition" -->
+      
+          <!-- Position Column -->
+          <ng-container matColumnDef="foto">
+            <mat-header-cell *matHeaderCellDef> Foto </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <img height="40" width="40" [src]="element.foto">
+            </mat-cell>
+          </ng-container>
+
+          <!-- Position Column -->
+          <ng-container matColumnDef="nombre">
+            <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.nombre}} </mat-cell>
+          </ng-container>
+      
+          <!-- Name Column -->
+          <ng-container matColumnDef="apellido">
+            <mat-header-cell *matHeaderCellDef> Apellido </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.apellido}} </mat-cell>
+          </ng-container>
+      
+          <!-- Weight Column -->
+          <ng-container matColumnDef="email">
+            <mat-header-cell *matHeaderCellDef> Correo </mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.email }}</mat-cell>
+          </ng-container>
+      
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="patente">
+            <mat-header-cell *matHeaderCellDef> Patente vehiculo </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.patente}} </mat-cell>
+          </ng-container>
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="activo">
+            <mat-header-cell *matHeaderCellDef> Activo </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.activo | boolean}} </mat-cell>
+          </ng-container>
+      
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row style="cursor:pointer;" *matRowDef="let row; columns: displayedColumns;" (click)="edit(row)"></mat-row>
+        </mat-table>
+      </div>

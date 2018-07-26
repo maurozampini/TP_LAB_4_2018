@@ -1,3 +1,17 @@
-<p>
-  menu works!
-</p>
+<mat-list role="list" style="width: 250px;">
+  <mat-list-item (click)="navigation('')" style="cursor: pointer" role="listitem">Remiseria</mat-list-item>
+</mat-list>
+<mat-list *ngIf="reaload" role="list" style="width: 250px;">
+  <mat-list-item class="hover-item" (click)="navigation('')" style="cursor: pointer" role="listitem">Inicio</mat-list-item>
+  <mat-list-item class="hover-item" *ngIf="!auth.isLogued()" (click)="navigation('ingresar')" style="cursor: pointer" role="listitem">Inresar</mat-list-item><!-- NO LOGUEADO -->
+  <mat-list-item class="hover-item" *ngIf="!auth.isLogued()" (click)="navigation('registrar')" style="cursor: pointer" role="listitem">Registrarte</mat-list-item><!-- NO LOGUEADO -->
+  <!--mat-list-item class="hover-item" *ngIf="auth.isLogued() && auth.isChofer()" (click)="navigation('viajes-asignados')" style="cursor: pointer" role="listitem">Viajes asignados</mat-list-item--> <!-- REMISERO -->
+  <!--mat-list-item class="hover-item" *ngIf="auth.isLogued() && auth.isEncargado()" (click)="navigation('viajes-solicitados')" style="cursor: pointer" role="listitem">Viajes solicitados</mat-list-item--> <!-- ENCARGADO -->
+  <mat-list-item class="hover-item" *ngIf="auth.isLogued() && auth.isEncargado()" (click)="navigation('viajes')" style="cursor: pointer" role="listitem">Viajes</mat-list-item> <!-- ENCARGADO -->
+  <mat-list-item class="hover-item" *ngIf="auth.isLogued() && auth.isEncargado()" (click)="navigation('informes')" style="cursor: pointer" role="listitem">Informes</mat-list-item> <!-- ENCARGADO -->
+  <mat-list-item class="hover-item" *ngIf="auth.isLogued() && auth.isEncargado()" (click)="navigation('vehiculos')" style="cursor: pointer" role="listitem">Vehiculos</mat-list-item> <!-- ENCARGADO -->
+  <mat-list-item class="hover-item" *ngIf="auth.isLogued() && auth.isEncargado()" (click)="navigation('choferes')" style="cursor: pointer" role="listitem">Choferes</mat-list-item> <!-- ENCARGADO -->
+  <mat-list-item class="hover-item" *ngIf="auth.isLogued() && auth.isEncargado()" (click)="navigation('clientes')" style="cursor: pointer" role="listitem">Clientes</mat-list-item> <!-- ENCARGADO -->
+  <mat-list-item class="hover-item" *ngIf="auth.isLogued() && auth.isCliente()" (click)="navigation('mis-viajes')" style="cursor: pointer" role="listitem">Mis viajes</mat-list-item> <!-- CLIENTE -->
+  <mat-list-item class="hover-item" *ngIf="auth.isLogued()" (click)="auth.logout()" style="cursor: pointer" role="listitem">Cerrar sesión</mat-list-item> <!-- CLIENTE -->
+</mat-list>

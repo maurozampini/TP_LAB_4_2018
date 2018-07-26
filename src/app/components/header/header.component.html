@@ -1,3 +1,16 @@
-<p>
-  header works!
-</p>
+<mat-toolbar>
+  <mat-toolbar-row>
+    <button mat-icon-button (click)="toggleSidenav()">
+      <mat-icon aria-label="Menu">menu</mat-icon>
+    </button>
+    <span class="example-spacer"></span>
+    <button mat-raised-button routerLink="/ingresar" *ngIf="!auth.isLogued()" class="separador" color="primary">Ingresar</button><!-- NO LOGUEADO -->
+    <button mat-raised-button routerLink="/registrar" *ngIf="!auth.isLogued()" class="separador" >Registrate</button><!-- NO LOGUEADO -->
+    <button mat-button routerLink="/viajes-disponibles" *ngIf="auth.isLogued() && auth.isChofer()" class="separador"  color="primary">Viajes disponibles</button><!-- REMISERO -->
+    <button mat-button routerLink="/informes" *ngIf="auth.isLogued() && auth.isEncargado()" class="separador"  color="primary">Informes</button><!-- ENCARGADO -->
+    <button mat-button routerLink="/clientes" class="separador" *ngIf="auth.isLogued() && auth.isEncargado()" color="primary">Clientes</button><!-- ENCARGADO -->
+    <button mat-button routerLink="/viajes" class="separador" *ngIf="auth.isLogued() && auth.isEncargado()" color="primary">Viajes</button><!-- ENCARGADO -->
+    <button mat-button (click)="solicitarNuevoViaje()" class="separador" *ngIf="auth.isLogued() && auth.isCliente()" color="primary">Nuevo viaje</button><!-- CLIENTE -->
+    <button mat-raised-button (click)="auth.logout()" class="separador" *ngIf="auth.isLogued() && auth.isLogued()" color="primary">Cerrar sesión</button><!-- CLIENTE -->
+  </mat-toolbar-row>
+</mat-toolbar>

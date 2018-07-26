@@ -1,0 +1,49 @@
+
+  <mat-spinner *ngIf="loading" style="margin:auto;margin-top:150px;"></mat-spinner>
+  <div *ngIf="!loading" style="margin:30px;" class="example-container mat-elevation-z8">
+    <mat-table #table [dataSource]="dataSource">
+  
+      <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+  
+      <!-- Position Column -->
+      <ng-container matColumnDef="fecha">
+        <mat-header-cell *matHeaderCellDef> Fecha </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.fecha}} </mat-cell>
+      </ng-container>
+  
+      <!-- Name Column -->
+      <ng-container matColumnDef="hora">
+        <mat-header-cell *matHeaderCellDef> Hora </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.hora}} </mat-cell>
+      </ng-container>
+  
+      <!-- Weight Column -->
+      <ng-container matColumnDef="comodidad">
+        <mat-header-cell *matHeaderCellDef> Comodidad </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+            <mat-icon style="color: yellow;">{{element.comodidad | comodidad}}</mat-icon></mat-cell>
+      </ng-container>
+  
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="medioPago">
+        <mat-header-cell *matHeaderCellDef> Medio de pago </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.medioPago | medioPago}} </mat-cell>
+      </ng-container>
+  
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="estado">
+        <mat-header-cell *matHeaderCellDef> Estado </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.estado | estado}} </mat-cell>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="precio">
+          <mat-header-cell *matHeaderCellDef> Precio </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.precio | precio}} </mat-cell>
+        </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row style="cursor:pointer;" *matRowDef="let row; columns: displayedColumns;" (click)="edit(row)"></mat-row>
+    </mat-table>
+  </div>

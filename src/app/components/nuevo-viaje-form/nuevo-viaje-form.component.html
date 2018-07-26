@@ -1,0 +1,48 @@
+
+<h4 mat-dialog-title>Solicitar viaje</h4>
+<mat-dialog-content>
+      <mat-form-field style="width: 100%">
+        <mat-select [(ngModel)]="viaje.comodidad" [disabled]="viaje.estado == 2" placeholder="Comodidad">
+          <mat-option value="uno">
+              Una estrella
+          </mat-option>
+          <mat-option value="dos">
+              Dos estrellas
+          </mat-option>
+          <mat-option value="tres">
+              Tres estrellas
+          </mat-option>
+          <mat-option value="cuatro">
+              Cuatro estrellas
+          </mat-option>
+          <mat-option value="cinco">
+              Cinco estrellas
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button mat-button style="width: 45%" (click)="openOrigen()">Seleccionar origen</button>
+      <button mat-button style="width: 45%" (click)="openDestino()">Seleccionar destino</button>
+      <mat-form-field style="width: 100%">
+          <input matInput  [min]="minDate" [disabled]="viaje.estado == 2" [(ngModel)]="viaje.internalDate" [matDatepicker]="picker" placeholder="Fecha">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      <mat-form-field  style="width: 100%">
+        <input matInput [(ngModel)]="viaje.hora" [disabled]="viaje.estado == 2" type="time" placeholder="Hora viaje" atp-time-picker/>
+      </mat-form-field>
+    <mat-form-field style="width: 100%">
+      <mat-select  [(ngModel)]="viaje.medioPago" [disabled]="viaje.estado == 2" placeholder="Modo pago">
+        <mat-option value="CC">
+            Cuenta corriente
+        </mat-option>
+        <mat-option value="EFEC">
+            Efectivo
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions style="float:right;">
+        <button mat-raised-button color="warn"  [disabled]="viaje.estado == 2 || viaje.estado == 1" *ngIf="viaje.viajeID" (click)="eliminar()" >Eliminar</button>
+    <button mat-raised-button mat-dialog-close>Cancelar</button>
+  <button mat-raised-button color="primary" [disabled]="viaje.estado == 2" (click)="solicitar()">{{viaje.viajeID ? 'Modificar':'Solicitar'}}</button>
+</mat-dialog-actions>

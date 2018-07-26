@@ -1,0 +1,47 @@
+
+  <mat-spinner *ngIf="loading" style="margin:auto;margin-top:150px;"></mat-spinner>
+  <div *ngIf="!loading" style="margin:30px;" class="example-container mat-elevation-z8">
+    <mat-table #table [dataSource]="dataSource">
+  
+      <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+  
+      <!-- Position Column -->
+      <ng-container matColumnDef="nombre">
+        <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.nombre}} </mat-cell>
+      </ng-container>
+  
+      <!-- Name Column -->
+      <ng-container matColumnDef="apellido">
+        <mat-header-cell *matHeaderCellDef> Apellido </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.apellido}} </mat-cell>
+      </ng-container>
+  
+      <!-- Weight Column -->
+      <ng-container matColumnDef="email">
+        <mat-header-cell *matHeaderCellDef> Correo </mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.email }}</mat-cell>
+      </ng-container>
+  
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="activo">
+        <mat-header-cell *matHeaderCellDef> Activo </mat-header-cell>
+        <mat-cell *matCellDef="let element"> 
+            <button mat-raised-button class="col-12" *ngIf="!element.activo" (click)="activar(element)" color="primary">Activar</button>
+            <button mat-raised-button class="col-12" *ngIf="element.activo" (click)="desactivar(element)" color="warn">Desactivar</button>
+        </mat-cell>
+      </ng-container>
+  
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="admin">
+        <mat-header-cell *matHeaderCellDef> Administrar </mat-header-cell>
+        <mat-cell *matCellDef="let element"> 
+            <button mat-button class="col-12" (click)="eliminar(element)" color="warn">Eliminar</button>
+        </mat-cell>
+      </ng-container>
+  
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row style="cursor:pointer;" *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  </div>

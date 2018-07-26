@@ -1,3 +1,35 @@
-<p>
-  register-form works!
-</p>
+<div class="container">
+  <div class="row justify-content-center align-items-center" style="padding-top: 50px;">
+    <form class="col-6" [formGroup]="reactiveForm">
+        <h2>Registrarse</h2>
+      <mat-form-field class="col-12">
+        <input matInput formControlName="firstName" placeholder="Nombre" required>
+        <mat-error>El nombre es requerido</mat-error>
+      </mat-form-field>
+      <mat-form-field class="col-12">
+        <input matInput  formControlName="lastName" placeholder="Apeliido" required>
+        <mat-error>El apellido es requerido</mat-error>
+      </mat-form-field>
+      <mat-form-field class="col-12">
+        <input formControlName="email" matInput placeholder="Correo" required>
+        <mat-error>{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+      <mat-form-field class="col-12">
+        <input matInput  formControlName="password" type="password" placeholder="Contraseña" required>
+        <mat-error>{{getErrorMessagePassword()}}</mat-error>
+      </mat-form-field>
+      <mat-form-field class="col-12">
+        <input matInput formControlName="secondPassword" type="password" placeholder="Repetir contraseña" required>
+        <mat-error >Las contraseñas no son iguales</mat-error>
+      </mat-form-field>
+      <div class="row justify-content-center align-items-center">
+        <re-captcha (resolved)="resolvedCaptcha($event)" siteKey="6Lf48lwUAAAAAHr75WcT44nKZHLlYY4AyAwk05_M"></re-captcha>
+        <!--re-captcha [formControl]="recaptchaReactive"></re-captcha-->
+        
+      </div>
+      <p style="padding-top: 20px;">
+        <button mat-raised-button class="col-12" [disabled]="reactiveForm.status != 'VALID' || !resolved" (click)="registrarUsuario()" color="primary">¡Registrarme!</button>
+      </p>  
+    </form>   
+  </div>
+</div>

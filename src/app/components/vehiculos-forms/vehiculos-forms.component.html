@@ -1,0 +1,79 @@
+
+<h4 mat-dialog-title>{{data && data.patente ? 'Editando auto: ' +  data.patente : 'Nuevo vehiculo'}}</h4>
+<mat-dialog-content>
+  <form class="col-12" [formGroup]="reactiveForm">
+    <mat-form-field class="col-12">
+      <mat-select placeholder="Color" formControlName="color">
+        <mat-option value="Rojo">
+            Rojo
+        </mat-option>
+        <mat-option value="Verde">
+            Verde
+        </mat-option>
+        <mat-option value="Azul">
+            Azul
+        </mat-option>
+        <mat-option value="Amarillo">
+            Amarillo
+        </mat-option>
+        <mat-option value="Violeta">
+            Violeta
+        </mat-option>
+      </mat-select>
+      <mat-error>El color es requerido</mat-error>
+    </mat-form-field>
+    <mat-form-field class="col-12">
+      <mat-select formControlName="comodidad" placeholder="Comodidad">
+        <mat-option value="uno">
+            Una estrella
+        </mat-option>
+        <mat-option value="dos">
+            Dos estrellas
+        </mat-option>
+        <mat-option value="tres">
+            Tres estrellas
+        </mat-option>
+        <mat-option value="cuatro">
+            Cuatro estrellas
+        </mat-option>
+        <mat-option value="cinco">
+            Cinco estrellas
+        </mat-option>
+      </mat-select>
+      <mat-error>El color es requerido</mat-error>
+    </mat-form-field>
+    <mat-form-field class="col-12">
+      <input matInput [textMask]="{mask: maskPatente}" formControlName="patente" placeholder="Patente (AA-999-AA)" required [readonly]="vehiculo.vehiculoID">
+      <mat-error>La patente es requerida</mat-error>
+    </mat-form-field>
+    <mat-form-field class="col-12">
+      <input matInput  formControlName="marca" placeholder="Marca" required>
+      <mat-error>La patente es requerida</mat-error>
+    </mat-form-field>
+    <mat-form-field class="col-12">
+      <input formControlName="modelo" matInput placeholder="Modelo" required>
+      <mat-error>El modelo es requerido</mat-error>
+    </mat-form-field>
+    <mat-form-field class="col-12">
+      <input matInput [textMask]="{mask: maskAnio}"  formControlName="anio" placeholder="Año" required>
+      <mat-error>El año es requerido</mat-error>
+    </mat-form-field>
+    <div class="col-12">
+        <table class="table">
+            <tbody class="upload-name-style">
+                <tr>
+                    <td><strong>{{ vehiculo.foto }}</strong></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <file-drop headertext="Arrastre la foto del chofer aqui" (onFileDrop)="dropped($event)" 
+    (onFileOver)="fileOver($event)" (onFileLeave)="fileLeave($event)">
+    </file-drop>
+  </form>   
+</mat-dialog-content>
+<mat-dialog-actions style="float:right;">
+        <button mat-raised-button color="warn" *ngIf="vehiculo.vehiculoID" (click)="eliminar()" >Eliminar</button>
+    <button mat-raised-button mat-dialog-close>Cancelar</button>
+    <button mat-raised-button [disabled]="reactiveForm.status != 'VALID'" (click)="guardar()" color="primary">Guardar</button>
+</mat-dialog-actions>

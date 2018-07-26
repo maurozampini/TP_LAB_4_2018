@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="row justify-content-center align-items-center" style="padding-top: 120px;">
+    <form class="col-6" [formGroup]="reactiveForm">
+      <h2>Ingresar</h2>
+      <mat-card *ngIf="showError" style="        margin: 30px 12px;box-shadow: 0 3px 1px -2px #f4433626, 0 2px 2px 0 #f443362e, 0 1px 5px 0 #f443361f;
+      background-color: #ff000026;">
+        <mat-card-title>Error</mat-card-title>
+        <mat-card-subtitle style="font-weight: bold; color: black">{{messageError}}</mat-card-subtitle>
+      </mat-card>
+      <mat-form-field class="col-12">
+        <input matInput formControlName="email" (keypress)="hiddenError()" placeholder="Correo" required>
+        <mat-error>El correo es requerido</mat-error>
+      </mat-form-field>
+      <mat-form-field class="col-12">
+        <input matInput  formControlName="password" (keypress)="hiddenError()" type="password" placeholder="Contraseña" required>
+        <mat-error>La contraseña es requerida</mat-error>
+      </mat-form-field>
+      <p style="padding-top: 20px;">
+        <button mat-raised-button class="col-12" ngDefaultControl name="la" [disabled]="reactiveForm.status != 'VALID'" (click)="ingresar()" color="primary">Ingresar</button>
+      </p>  
+      <p style="padding-top: 20px;">
+        <button mat-raised-button class="col-12" ngDefaultControl name="reg" routerLink="/registrar">¡Registrarme!</button>
+      </p>
+    </form>   
+    <mat-form-field class="col-6">
+      <mat-select  [(ngModel)]="autolog" (change)="autoLogin()" [ngModelOptions]="{standalone: true}"  placeholder="Seleccione tipo de usuario">
+        <mat-option value="c">
+            Cliente
+        </mat-option>
+        <mat-option value="ch">
+            Chofer
+        </mat-option>
+        <mat-option value="e">
+            Encargado
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</div>

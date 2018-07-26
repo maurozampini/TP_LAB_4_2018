@@ -1,0 +1,54 @@
+<div class="container">
+    <h1 style="margin: auto;
+    margin-top: 30px;">Estadiscas sobre pedidos por hora</h1>
+  <div class="col-12 row" style="height: 500px">
+      <mat-spinner *ngIf="loadingHora" style="margin:auto"></mat-spinner>
+      <ngx-charts-bar-vertical *ngIf="!loadingHora"
+      [view]="view"
+      [results]="dataHora"
+      xAxis="true"
+      yAxis="true"
+      scheme="fire"
+      legend="true"
+      legendTitle="Horarios"
+      showXAxisLabel="true"
+      showYAxisLabel="true"
+      xAxisLabel="Horas"
+      yAxisLabel="Total por hora">
+    </ngx-charts-bar-vertical>
+  </div>
+  <h1 style="margin: auto;
+  margin-top: 100px;">Estadiscas sobre pedidos por comodidad</h1>
+  <div class="col-12 row" style="height: 500px;margin-top: 30px;">
+    <mat-spinner *ngIf="loadingComodidad" style="margin:auto"></mat-spinner>
+    <ngx-charts-bar-horizontal *ngIf="!loadingComodidad"
+    [view]="view"
+    [results]="dataComodidad"
+    xAxis="true"
+    yAxis="true"
+    scheme="solar"
+    legend="true"
+    legendTitle="Estrellas (comodidad)"
+    showXAxisLabel="true"
+    showYAxisLabel="true"
+    xAxisLabel="Cantidad pedidos"
+    yAxisLabel="Estrellas ">
+    </ngx-charts-bar-horizontal>
+  </div>
+  <h1 style="margin: auto;
+  margin-top: 100px;">Estadiscas sobre pedidos por medio de pago</h1>
+  <div class="col-12 row" style="height: 500px;margin-top: 30px;">
+      <mat-spinner *ngIf="loadingPagos" style="margin:auto"></mat-spinner>
+  <ngx-charts-pie-chart *ngIf="!loadingPagos"
+  [view]="view"
+    [results]="dataModoPago"
+    xAxis="true"
+    yAxis="true"
+    scheme="vivid"
+    legend="true"
+    legendTitle="Modo de pago"
+    showXAxisLabel="true"
+    showYAxisLabel="true">
+    </ngx-charts-pie-chart>
+  </div>
+</div>

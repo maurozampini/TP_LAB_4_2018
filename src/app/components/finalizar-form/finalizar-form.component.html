@@ -1,0 +1,11 @@
+
+<h4 mat-dialog-title>Finalizar viaje</h4>
+<mat-dialog-content>    
+    <mat-form-field class="col-12">
+      <input matInput pKeyFilter="num" [(ngModel)]="precio" placeholder="Precio viaje" >
+    </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions style="float:right;">
+    <button mat-raised-button mat-dialog-close>Cancelar</button>
+    <button mat-raised-button (click)="conf()" color="primary">Confirmar</button>
+</mat-dialog-actions>

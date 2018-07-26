@@ -1,0 +1,49 @@
+
+       
+
+<h4 mat-dialog-title>{{data && data.email ? 'Editando chofer: ' +  data.email : 'Nuevo chofer'}}</h4>
+<mat-dialog-content>
+        <form class="col-12" [formGroup]="reactiveForm">
+            <mat-checkbox formControlName="activo" class="col-12">Activo</mat-checkbox>
+            <mat-form-field class="col-12">
+            <input matInput formControlName="nombre" placeholder="Nombre" required>
+            <mat-error>El nombre es requerido</mat-error>
+            </mat-form-field>
+            <mat-form-field class="col-12">
+            <input matInput  formControlName="apellido" placeholder="Apeliido" required>
+            <mat-error>El apellido es requerido</mat-error>
+            </mat-form-field>
+            <mat-form-field class="col-12">
+            <input formControlName="email" matInput placeholder="Correo" required>
+            <mat-error>{{getErrorMessage()}}</mat-error>
+            </mat-form-field>
+            <mat-form-field class="col-12">
+            <input matInput  formControlName="password" type="password" placeholder="Contraseña" required>
+            <mat-error>{{getErrorMessagePassword()}}</mat-error>
+            </mat-form-field>
+            <mat-form-field class="col-12">
+              <mat-select placeholder="Vehiculo" formControlName="vehiculoID">
+                <mat-option *ngFor="let v of vehiculos" [value]="v.vehiculoID">
+                    {{v.patente}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <div class="col-12">
+                <table class="table">
+                    <tbody class="upload-name-style">
+                        <tr>
+                            <td><strong>{{ chofer.foto }}</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <file-drop headertext="Arrastre la foto del chofer aqui" (onFileDrop)="dropped($event)" 
+            (onFileOver)="fileOver($event)" (onFileLeave)="fileLeave($event)">
+            </file-drop>
+        </form>  
+</mat-dialog-content>
+<mat-dialog-actions style="float:right;">
+    <button mat-raised-button color="warn" *ngIf="chofer.usuarioID" (click)="eliminar()" >Eliminar</button>
+    <button mat-raised-button mat-dialog-close>Cancelar</button>
+    <button mat-raised-button [disabled]="reactiveForm.status != 'VALID'" (click)="guardar()" color="primary">Guardar</button>
+</mat-dialog-actions>

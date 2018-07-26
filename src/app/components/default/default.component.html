@@ -1,0 +1,9 @@
+<mat-sidenav-container class="example-container">
+  <mat-sidenav #sidenav mode="push">
+    <app-menu [sidenav]="sidenav"></app-menu>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <app-header [sidenav]="sidenav"></app-header>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

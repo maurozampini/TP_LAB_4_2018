@@ -1,0 +1,63 @@
+<mat-toolbar style="border-top: solid 1px;border-color: rgb(65, 86, 181);margin-bottom:20px">
+  <mat-toolbar-row>
+    <button mat-button (click)="nuevo()">
+      Nuevo
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>
+<mat-spinner *ngIf="loading" style="margin:auto"></mat-spinner>
+<div *ngIf="!loading" class="example-container mat-elevation-z8">
+  <mat-table #table [dataSource]="dataSource">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+          <!-- Position Column -->
+          <ng-container matColumnDef="foto">
+              <mat-header-cell *matHeaderCellDef> Foto </mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                <img height="40" width="40" [src]="element.foto">
+              </mat-cell>
+            </ng-container>
+            
+    <!-- Position Column -->
+    <ng-container matColumnDef="patente">
+      <mat-header-cell *matHeaderCellDef> Patente </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.patente}} </mat-cell>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="color">
+      <mat-header-cell *matHeaderCellDef> Color </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.color}} </mat-cell>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="comodidad">
+      <mat-header-cell *matHeaderCellDef> Comodidad </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <mat-icon>{{element.comodidad | comodidad}}</mat-icon></mat-cell>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="marca">
+      <mat-header-cell *matHeaderCellDef> Marca </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.marca}} </mat-cell>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="modelo">
+      <mat-header-cell *matHeaderCellDef> Modelo </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.modelo}} </mat-cell>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="anio">
+      <mat-header-cell *matHeaderCellDef> Año </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.anio}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="editVehiculo(row)"></mat-row>
+  </mat-table>
+</div>
