@@ -16,6 +16,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatCardModule} from '@angular/material/card';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatFormFieldModule} from '@angular/material/form-field';
+
 
 import { JwtModule } from '@auth0/angular-jwt';
 
@@ -113,6 +115,7 @@ export function jwtTokenGetter() {
     BooleanPipe
   ],
   imports: [
+    MatFormFieldModule,
     BrowserModule,
     FormsModule,
     HttpClientModule,
@@ -142,7 +145,7 @@ export function jwtTokenGetter() {
         tokenGetter: jwtTokenGetter,
         whitelistedDomains : [
           'localhost',
-          'matiasmartin.xyz'
+          'locomotivsublimaciones.esy.es'
         ],
         headerName : 'token',
         authScheme : ''
@@ -169,7 +172,7 @@ export function jwtTokenGetter() {
   providers: [
     {
       provide: RECAPTCHA_SETTINGS,
-      useValue: { siteKey: '6Lf48lwUAAAAAHr75WcT44nKZHLlYY4AyAwk05_M' } as RecaptchaSettings,
+      useValue: { siteKey: '6LfypWYUAAAAAOQFcQiV9V_HY39I0qnz4DLeHrwt' } as RecaptchaSettings,
     },
     GenericService,
     AuthService,
